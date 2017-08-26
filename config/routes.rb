@@ -10,5 +10,11 @@ Rails.application.routes.draw do
   post '/sign-in' => 'users#signin'
   delete '/sign-out/:id' => 'users#signout'
   patch '/change-password/:id' => 'users#changepw'
-  resources :users, only: %i[index show]
+  resources :users, except: %i[new edit]
+
+# Patients signin routes
+#   post '/sign-up' => 'patients#signup'
+#   post '/sign-in' => 'patients#signin'
+#   delete '/sign-out/:id' => 'patients#signout'
+#   patch '/change-password/:id' => 'patients#changepw'
 end
