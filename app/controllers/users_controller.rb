@@ -54,11 +54,7 @@ class UsersController < ProtectedController
   end
 
   def update
-    if @user.update(user_params)
-      render json: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
+    head :bad_request
   end
 
   private
@@ -71,10 +67,6 @@ class UsersController < ProtectedController
   def pw_creds
     params.require(:passwords)
           .permit(:old, :new)
-  end
-
-  def patient_params
-    params.require(:user).permit(:given_name, :family_name, :dob, :email, :diagnosis, :zipcode)
   end
 
   private :user_creds, :pw_creds
